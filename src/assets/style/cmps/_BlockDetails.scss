@@ -1,0 +1,13 @@
+.code-container {
+  background: gray;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  textarea {
+    padding: 15px 25px;
+    width: 1000px;
+    height: 700px;
+  }
+}
