@@ -1,0 +1,14 @@
+.block-preview {
+  background-color: #82cafa;
+  border-radius: 8px;
+  list-style-type: none;
+  width: 300px;
+  text-align: center;
+  padding: 10px;
+  &:hover {
+    background-color: #5a86a3;
+  }
+  h1 {
+    margin: 0;
+  }
+}
