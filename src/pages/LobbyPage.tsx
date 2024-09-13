@@ -7,19 +7,21 @@ export const LobbyPage = () => {
   const [blocks, setBlocks] = useState<Block[]>([])
 
   useEffect(() => {
-    ;(async () => {
-      try {
-        const res = await blockService.getBlocks()
-        setBlocks(res)
-      } catch (err) {
-        console.log('Cannot load blocks', err)
-      }
-    })()
+    try {
+      loadBlocks()
+    } catch (err) {
+      console.log('Cannot load blocks', err)
+    }
   }, [])
+
+  const loadBlocks = async () => {
+    const blocks = await blockService.query()
+    setBlocks(blocks)
+  }
 
   return (
     <div>
-      <h1>Choose code block</h1>
+      <h1 style={{ textAlign: 'center' }}>Choose code block</h1>
       <BlockList {...{ blocks }} />
     </div>
   )
