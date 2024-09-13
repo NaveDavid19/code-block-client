@@ -112,15 +112,15 @@ export const BlockDetails = () => {
     }
   }
 
-  const handleCodeChange = async (e: ChangeEvent<HTMLDivElement>) => {
+  const handleCodeChange = async (e: ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault()
-    const { innerText } = e.target
-    setBlock((prevBlock) => ({ ...prevBlock, value: innerText }))
+    const { value } = e.target
+    setBlock((prevBlock) => ({ ...prevBlock, value: value }))
     try {
-      await blockService.save({ ...block, value: innerText })
+      await blockService.save({ ...block, value: value })
       socket?.emit(SOCKET_EVENT_CODE_EDIT, {
         msg: 'code has changed',
-        data: innerText,
+        data: value,
       })
     } catch (err) {
       console.error('Failed to save block:', err)
