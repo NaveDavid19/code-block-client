@@ -5,7 +5,10 @@ import { BlockList } from '../cmps/BlockList'
 
 export const LobbyPage = () => {
   const [blocks, setBlocks] = useState<Block[]>([])
-
+  const [search, setSearch] = useState<string>('')
+  const filteredBlocks = blocks.filter((block) =>
+    block.title.toLowerCase().includes(search.toLowerCase())
+  )
   useEffect(() => {
     try {
       loadBlocks()
@@ -22,7 +25,14 @@ export const LobbyPage = () => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Choose code block</h1>
-      <BlockList {...{ blocks }} />
+      <input
+        style={{ height: '30px' }}
+        type="text"
+        placeholder="Search"
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+      />
+      <BlockList {...{ blocks: filteredBlocks }} />
     </div>
   )
 }
