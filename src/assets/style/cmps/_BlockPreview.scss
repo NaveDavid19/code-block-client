@@ -1,4 +1,8 @@
 .block-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background-color: #82cafa;
   border-radius: 8px;
   list-style-type: none;
