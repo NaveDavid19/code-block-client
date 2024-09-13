@@ -8,7 +8,9 @@ export const SOCKET_EVENT_MENTOR_LEFT = 'mentor-left'
 export const SOCKET_EVENT_CODE_EDIT = 'code-changed'
 
 const baseUrl =
-  process.env.NODE_ENV === 'production' ? undefined : '//localhost:3030'
+  import.meta.env.MODE === 'production'
+    ? 'https://code-block-server-m9xd.onrender.com'
+    : '//localhost:3030'
 
 export let socket: Socket | undefined
 
