@@ -9,7 +9,9 @@ export type Block = {
   _id: string
   title: string
   initialTemplate: string
-  isVisited: boolean
+  value: string
+  visitorCounter: number
+  solution: string
 }
 
 function query(entityType: string, delay = 1000): Promise<Block[]> {
