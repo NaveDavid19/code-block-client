@@ -15,14 +15,14 @@ export const BlockPreview = ({ block }: BlockPreviewProps) => {
         style={{
           marginTop: '5px',
           backgroundColor: 'black',
+          width: '50px',
         }}
         variant="contained"
         component={Link}
-        to={`/block/${block._id}`}
+        to={`/codeBlock/${block._id}`}
       >
-        {' '}
         View
-      </Button>{' '}
+      </Button>
     </li>
   )
 }
