@@ -42,29 +42,31 @@ function debounce<T extends (...args: any[]) => void>(
 }
 
 function processString(input: string): string {
-  // Step 1: Normalize newline characters (covers \n, \r\n, and \r)
-  let result = input.replace(/\r\n|\n|\r/g, '')
+  // Step 1: Remove single-line comments (from // to the end of the line, including newline)
+  let result = input.replace(/\/\/[^\n\r]*/g, '')
 
-  // Step 2: Remove all white spaces (spaces, tabs, etc.)
+  // Step 2: Remove multi-line comments (/* */)
+  result = result.replace(/\/\*[\s\S]*?\*\//g, '')
+
+  // Step 3: Normalize newline characters (covers \n, \r\n, and \r)
+  result = result.replace(/\r\n|\n|\r/g, '')
+
+  // Step 4: Remove all white spaces (spaces, tabs, etc.)
   result = result.replace(/\s+/g, '')
 
-  // Step 3: Replace double quotes with single quotes
+  // Step 5: Replace double quotes with single quotes
   result = result.replace(/"/g, "'")
 
-  // Step 4: Convert to lowercase to ignore case differences
+  // Step 6: Convert to lowercase to ignore case differences
   result = result.toLowerCase()
 
-  // Step 5: Remove slashes (/) to ignore them
+  // Step 7: Remove slashes (/) to ignore them
   result = result.replace(/\//g, '')
 
-  // Optional Step 6: Remove comments (both single-line and multi-line)
-  // Uncomment if comments should be ignored in the comparison
-  result = result.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '')
-
-  // Step 6: Remove all semicolons
+  // Step 8: Remove all semicolons
   result = result.replace(/;/g, '')
 
-  // Optional Step 8: Normalize spacing around certain symbols (if needed)
+  // Optional Step 9: Normalize spacing around certain symbols (if needed)
   result = result.replace(/\s*([{}()=+*/-])\s*/g, '$1')
 
   return result
