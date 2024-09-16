@@ -1,8 +1,9 @@
+import naveImg from '../assets/img/nave.jpg'
 export function About() {
   return (
     <section className="about-container">
       <h2>About </h2>
-      <img src="..\src\assets\img\nave.jpg" alt="" />
+      <img src={naveImg} />
       <p>
         My name is Nave David. im 23 years old and I recently graduated a very
         intensive and dense course at the Coding Academy`s Bootcamp.
